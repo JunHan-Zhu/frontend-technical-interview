@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import Logo from "./Logo";
+import { AuthenticationContext } from "../AuthenticationContext";
 
 /**
  * TODO:
@@ -12,27 +13,33 @@ import Logo from "./Logo";
  */
 
 const DashboardHeader = () => {
-    const handleLogout = () => {
-        //TODO: handle logout
-    };
-    return (
-        <header className="flex  items-center justify-between border-b h-20">
-            <div>
-                <Logo />
-            </div>
-            <div>
-                <ul className="flex items-center space-x-3">
-                    {/* Display the username here */}
-                    <li>UserName</li>
-                    <li>
-                        <button className="bg-slate-200 p-2 rounded-md px-4 hover:bg-slate-300">
-                            Logout
-                        </button>
-                    </li>
-                </ul>
-            </div>
-        </header>
-    );
+  const { setToken } = useContext(AuthenticationContext);
+
+  const handleLogout = () => {
+    setToken("");
+  };
+
+  return (
+    <header className="flex  items-center justify-between border-b h-20">
+      <div>
+        <Logo />
+      </div>
+      <div>
+        <ul className="flex items-center space-x-3">
+          {/* Display the username here */}
+          <li>UserName</li>
+          <li>
+            <button
+              className="bg-slate-200 p-2 rounded-md px-4 hover:bg-slate-300"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          </li>
+        </ul>
+      </div>
+    </header>
+  );
 };
 
 export default DashboardHeader;
