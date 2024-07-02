@@ -3,6 +3,7 @@ import Logo from "../Logo";
 import { AuthenticationContext } from "../../AuthenticationContext";
 import LoginBackground from "./LoginBackground";
 import Footer from "./Footer";
+import { useNavigate } from "react-router-dom";
 
 interface LoginFormState {
   username: string;
@@ -30,6 +31,7 @@ interface LoginResponse {
 const Login = () => {
   const [formData, setFormData] = useState<LoginFormState>(initialFormState);
   const { setToken } = useContext(AuthenticationContext);
+  const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -57,6 +59,7 @@ const Login = () => {
     if (!accessToken) return;
 
     setToken(accessToken);
+    navigate("/carbon-credits");
   };
 
   return (

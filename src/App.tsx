@@ -1,6 +1,14 @@
 import AuthenticationProvider from "./AuthenticationContext";
-import LandingPage from "./LandingPage";
+import ProtectedRoute from "./ProtectedRoute";
 import ProjectsProvider from "./ProjectsContext";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import CarbonsContainer from "./components/CarbonsContainer";
+import { Login } from "./components/Login";
 
 /**
  * TODO:
@@ -14,7 +22,20 @@ function App() {
   return (
     <AuthenticationProvider>
       <ProjectsProvider>
-        <LandingPage />
+        <Router>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/carbon-credits"
+              element={
+                <ProtectedRoute>
+                  <CarbonsContainer />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/" element={<Navigate to="/login" replace />} />
+          </Routes>
+        </Router>
       </ProjectsProvider>
     </AuthenticationProvider>
   );
