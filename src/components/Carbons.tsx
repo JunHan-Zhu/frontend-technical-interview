@@ -1,6 +1,7 @@
 import { useState } from "react";
-import DashboardHeader from "./DashboardHeader";
+import DashboardSidebar from "./DashboardSidebar";
 import { NormalCardContainer, CompactCardContainer } from "./Cards";
+import DashboardHeader from "./DashboardHeader";
 
 /**
  * TODO:
@@ -21,31 +22,29 @@ import { NormalCardContainer, CompactCardContainer } from "./Cards";
 const Carbons = () => {
   const [isCompact, setIsCompact] = useState(false);
 
-  const handleToggle = () => {
-    setIsCompact(!isCompact);
+  const setCompact = () => {
+    setIsCompact(true);
+  };
+
+  const setNormal = () => {
+    setIsCompact(false);
   };
 
   return (
-    <section className="max-w-screen-xl m-auto">
-      <DashboardHeader />
-      <div className="flex items-center justify-between my-5">
-        <h1 className="text-2xl font-bold">List of Carbon credits</h1>
-        <ul className="flex space-x-2">
-          <li>
-            <button
-              className="bg-slate-200 p-2 rounded-md px-4 hover:bg-slate-300"
-              onClick={handleToggle}
-            >
-              Toggle compact view
-            </button>
-          </li>
-        </ul>
-      </div>
+    <div className="flex-grow flex min-h-screen bg-purple-100">
+      <DashboardSidebar />
+      <section className="flex-grow">
+        <DashboardHeader
+          isCompact={isCompact}
+          setCompact={setCompact}
+          setNormal={setNormal}
+        />
 
-      <main className="">
-        {isCompact ? <CompactCardContainer /> : <NormalCardContainer />}
-      </main>
-    </section>
+        <main className="m-6">
+          {isCompact ? <CompactCardContainer /> : <NormalCardContainer />}
+        </main>
+      </section>
+    </div>
   );
 };
 

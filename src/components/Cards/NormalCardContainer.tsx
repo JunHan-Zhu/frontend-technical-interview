@@ -19,10 +19,12 @@ export function NormalCardContainer(): ReactElement {
   }
 
   return (
-    <div className="grid grid-cols-3 gap-5 my-5">
+    <div className="flex flex-shrink grid grid-cols-3 gap-5 my-5">
       {projects.map((project) => (
         <NormalCard {...project} />
       ))}
     </div>
   );
 }
+
+export default NormalCardContainer;

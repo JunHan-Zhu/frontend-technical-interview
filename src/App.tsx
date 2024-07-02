@@ -1,7 +1,6 @@
 import AuthenticationProvider from "./AuthenticationContext";
 import LandingPage from "./LandingPage";
 import ProjectsProvider from "./ProjectsContext";
-import Login from "./components/Login";
 
 /**
  * TODO:

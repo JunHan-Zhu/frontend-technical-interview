@@ -1,2 +1,2 @@
-export { CompactCardContainer } from "./CompactCardContainer";
-export { NormalCardContainer } from "./NormalCardContainer";
+export { default as CompactCardContainer } from "./CompactCardContainer";
+export { default as NormalCardContainer } from "./NormalCardContainer";

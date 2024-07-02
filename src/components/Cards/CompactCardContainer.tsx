@@ -24,3 +24,5 @@ export function CompactCardContainer(): ReactElement {
     </div>
   );
 }
+
+export default CompactCardContainer;
