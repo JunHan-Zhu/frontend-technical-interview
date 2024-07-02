@@ -1,6 +1,6 @@
 import { ReactElement, useCallback, useContext, useEffect } from "react";
-import { AuthenticationContext } from "../AuthenticationContext";
-import { Project, ProjectsContext } from "../ProjectsContext";
+import { AuthenticationContext } from "../../AuthenticationContext";
+import { Project, ProjectsContext } from "../../ProjectsContext";
 import Carbons from "./Carbons";
 
 function CarbonsContainer(): ReactElement {

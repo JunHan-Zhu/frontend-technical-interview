@@ -1,11 +1,4 @@
-import { ReactElement, useContext } from "react";
-import { AuthenticationContext } from "../AuthenticationContext";
-import {
-  MailOutline,
-  GridViewOutlined,
-  ViewCompactOutlined,
-} from "@mui/icons-material";
-import { orange } from "@mui/material/colors";
+import { ReactElement, ReactNode } from "react";
 
 /**
  * TODO:
@@ -18,45 +11,25 @@ import { orange } from "@mui/material/colors";
  */
 
 interface DashboardHeaderProps {
-  isCompact: boolean;
-  setCompact: () => void;
-  setNormal: () => void;
+  title: string;
+  actions?: ReactNode;
+  headerIcon?: ReactNode;
 }
 
 function DashboardHeader({
-  isCompact,
-  setCompact,
-  setNormal,
+  title,
+  actions,
+  headerIcon,
 }: DashboardHeaderProps): ReactElement {
   return (
     <header className="flex items-center justify-between border-b-2 border-gray-300 h-24">
       <h1 className="text-4xl flex items-center ml-4">
-        <MailOutline
-          className="mr-2 text-orange-600 text"
-          style={{ fontSize: 48 }}
-        />
-        Carbon Credits
+        {headerIcon && <div>{headerIcon}</div>}
+        {title}
       </h1>
       <div>
         <ul className="flex items-center space-x-3">
-          <li>
-            <button className="p-2 rounded-md px-4" onClick={setNormal}>
-              <GridViewOutlined
-                style={{
-                  fontSize: 40,
-                  color: isCompact ? "grey" : orange[600],
-                }}
-              />
-            </button>
-            <button className="p-2 rounded-md px-4" onClick={setCompact}>
-              <ViewCompactOutlined
-                style={{
-                  fontSize: 40,
-                  color: isCompact ? orange[600] : "grey",
-                }}
-              />
-            </button>
-          </li>
+          {actions && <li>{actions}</li>}
         </ul>
       </div>
     </header>

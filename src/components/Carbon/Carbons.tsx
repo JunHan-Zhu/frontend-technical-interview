@@ -1,7 +1,12 @@
 import { useState } from "react";
-import DashboardSidebar from "./DashboardSidebar";
-import { NormalCardContainer, CompactCardContainer } from "./Cards";
-import DashboardHeader from "./DashboardHeader";
+import { NormalCardContainer, CompactCardContainer } from "../Cards";
+import Layout from "../Layout";
+import {
+  GridViewOutlined,
+  MailOutline,
+  ViewCompactOutlined,
+} from "@mui/icons-material";
+import { orange } from "@mui/material/colors";
 
 /**
  * TODO:
@@ -30,21 +35,44 @@ const Carbons = () => {
     setIsCompact(false);
   };
 
-  return (
-    <div className="flex-grow flex min-h-screen bg-purple-100">
-      <DashboardSidebar />
-      <section className="flex-grow">
-        <DashboardHeader
-          isCompact={isCompact}
-          setCompact={setCompact}
-          setNormal={setNormal}
+  const toggleSection = (
+    <li>
+      <button className="p-2 rounded-md px-4" onClick={setNormal}>
+        <GridViewOutlined
+          style={{
+            fontSize: 40,
+            color: isCompact ? "grey" : orange[600],
+          }}
         />
+      </button>
+      <button className="p-2 rounded-md px-4" onClick={setCompact}>
+        <ViewCompactOutlined
+          style={{
+            fontSize: 40,
+            color: isCompact ? orange[600] : "grey",
+          }}
+        />
+      </button>
+    </li>
+  );
 
-        <main className="m-6">
-          {isCompact ? <CompactCardContainer /> : <NormalCardContainer />}
-        </main>
-      </section>
-    </div>
+  const headerIcon = (
+    <MailOutline
+      className="mr-2 text-orange-600 text"
+      style={{ fontSize: 48 }}
+    />
+  );
+
+  return (
+    <Layout
+      headerActions={toggleSection}
+      headerIcon={headerIcon}
+      title="Carbon Credits"
+    >
+      <main className="m-6">
+        {isCompact ? <CompactCardContainer /> : <NormalCardContainer />}
+      </main>
+    </Layout>
   );
 };
 

@@ -5,17 +5,28 @@ import {
   CalendarTodayOutlined,
   MailOutlineOutlined,
 } from "@mui/icons-material";
+import { useNavigate, useNavigation } from "react-router-dom";
 
 function CompactCard({
+  projectId,
   projectName,
   description,
   projectManagerName,
   projectRegistrationDate,
 }: Project): ReactElement {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/carbon-credits/${projectId}`);
+  };
+
   const dateString = new Date(projectRegistrationDate).toLocaleDateString();
 
   return (
-    <div className="rounded-lg p-3 flex justify-between bg-white p-6">
+    <div
+      className="rounded-lg p-3 flex justify-between bg-white p-6 cursor-pointer"
+      onClick={handleClick}
+    >
       <div className="mr-6">
         <h2 className="text-xl font-bold flex items-center mb-2">
           <MailOutlineOutlined className="mr-2" /> {projectName}

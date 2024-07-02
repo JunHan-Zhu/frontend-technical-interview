@@ -12,11 +12,15 @@ export interface Project {
 interface ProjectsContextInterface {
   projects: Project[];
   setProjects: (projects: Project[]) => void;
+  findProject: (projectId: string) => Project | undefined;
 }
 
 const initialState: ProjectsContextInterface = {
   projects: [],
   setProjects: () => {},
+  findProject: () => {
+    return undefined;
+  },
 };
 
 export const ProjectsContext =
@@ -25,8 +29,8 @@ export const ProjectsContext =
 const ProjectsProvider = ({ children }: { children: ReactNode }) => {
   const [projects, setProjects] = useState<Project[]>([]);
 
-  const test = (projects: Project[]) => {
-    setProjects(projects);
+  const findProject = (projectId: string): Project | undefined => {
+    return projects.find((project) => project.projectId === projectId);
   };
 
   return (
@@ -34,6 +38,7 @@ const ProjectsProvider = ({ children }: { children: ReactNode }) => {
       value={{
         projects,
         setProjects,
+        findProject,
       }}
     >
       {children}

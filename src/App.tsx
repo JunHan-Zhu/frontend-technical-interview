@@ -7,7 +7,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import CarbonsContainer from "./components/CarbonsContainer";
+import { CarbonsContainer, CarbonProjectDetails } from "./components/Carbon";
 import { Login } from "./components/Login";
 
 /**
@@ -30,6 +30,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <CarbonsContainer />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/carbon-credits/:projectId"
+              element={
+                <ProtectedRoute>
+                  <CarbonProjectDetails />
                 </ProtectedRoute>
               }
             />
