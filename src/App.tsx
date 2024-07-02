@@ -1,5 +1,6 @@
 import AuthenticationProvider from "./AuthenticationContext";
 import LandingPage from "./LandingPage";
+import ProjectsProvider from "./ProjectsContext";
 import Login from "./components/Login";
 
 /**
@@ -13,7 +14,9 @@ import Login from "./components/Login";
 function App() {
   return (
     <AuthenticationProvider>
-      <LandingPage />
+      <ProjectsProvider>
+        <LandingPage />
+      </ProjectsProvider>
     </AuthenticationProvider>
   );
 }

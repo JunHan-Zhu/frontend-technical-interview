@@ -1,35 +1,39 @@
-import React, { useState, ReactNode, SetStateAction } from 'react';
-
+import React, { useState, ReactNode } from "react";
 
 export interface Project {
-  projectId: string,
-  projectName: string,
-  description: string,
-  projectManagerName: string,
-  projectRegistrationDate: Date,
-  carbonCreditAmount: number
+  projectId: string;
+  projectName: string;
+  description: string;
+  projectManagerName: string;
+  projectRegistrationDate: string;
+  carbonCreditAmount: number;
 }
 
 interface ProjectsContextInterface {
-    projects: Project[], 
-    setProjects: (projects: Project[]) => void;
+  projects: Project[];
+  setProjects: (projects: Project[]) => void;
 }
 
-const initialState: ProjectsContextInterface ={
-   projects: [],
-   setProjects: () => {}
-}
+const initialState: ProjectsContextInterface = {
+  projects: [],
+  setProjects: () => {},
+};
 
-export const ProjectsContext = React.createContext<ProjectsContextInterface>(initialState);
+export const ProjectsContext =
+  React.createContext<ProjectsContextInterface>(initialState);
 
-const ProjectsProvider = ({ children }: {children: ReactNode}) => {
-    const [projects, setProjects] = useState<Project[]>([])
+const ProjectsProvider = ({ children }: { children: ReactNode }) => {
+  const [projects, setProjects] = useState<Project[]>([]);
+
+  const test = (projects: Project[]) => {
+    setProjects(projects);
+  };
 
   return (
     <ProjectsContext.Provider
       value={{
         projects,
-        setProjects
+        setProjects,
       }}
     >
       {children}
@@ -37,4 +41,4 @@ const ProjectsProvider = ({ children }: {children: ReactNode}) => {
   );
 };
 
-export default ProjectsProvider
+export default ProjectsProvider;

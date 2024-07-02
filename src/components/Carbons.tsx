@@ -1,4 +1,6 @@
+import { useState } from "react";
 import DashboardHeader from "./DashboardHeader";
+import { NormalCardContainer, CompactCardContainer } from "./Cards";
 
 /**
  * TODO:
@@ -17,73 +19,34 @@ import DashboardHeader from "./DashboardHeader";
  */
 
 const Carbons = () => {
+  const [isCompact, setIsCompact] = useState(false);
 
+  const handleToggle = () => {
+    setIsCompact(!isCompact);
+  };
 
-    return (
-        <section className="max-w-screen-xl m-auto">
-            <DashboardHeader />
-            <div className="flex items-center justify-between my-5">
-                <h1 className="text-2xl font-bold">List of Carbon credits</h1>
-                <ul className="flex space-x-2">
-                    <li>
-                        <button className="bg-slate-200 p-2 rounded-md px-4 hover:bg-slate-300">
-                            Normal
-                        </button>
-                    </li>
-                    <li>
-                        <button className="bg-slate-200 p-2 rounded-md px-4 hover:bg-slate-300">
-                            Compact
-                        </button>
-                    </li>
-                </ul>
-            </div>
+  return (
+    <section className="max-w-screen-xl m-auto">
+      <DashboardHeader />
+      <div className="flex items-center justify-between my-5">
+        <h1 className="text-2xl font-bold">List of Carbon credits</h1>
+        <ul className="flex space-x-2">
+          <li>
+            <button
+              className="bg-slate-200 p-2 rounded-md px-4 hover:bg-slate-300"
+              onClick={handleToggle}
+            >
+              Toggle compact view
+            </button>
+          </li>
+        </ul>
+      </div>
 
-            <main className="">
-                <div className="grid grid-cols-3 gap-5 my-5">
-                    <NormalCard />
-                    <NormalCard />
-                    <NormalCard />
-                </div>
-
-                <div className="grid grid-cols-2 gap-5 my-5">
-                    <CompactCard />
-                    <CompactCard />
-                    <CompactCard />
-                </div>
-            </main>
-        </section>
-    );
-};
-
-const NormalCard = () => {
-    return (
-        <div className="min-w-[350px] border rounded-md p-5 space-y-1">
-            <h2 className="text-xl font-bold">Name</h2>
-            <p className="text-base">lorem lipsum </p>
-            <div className="h-[200px] bg-gray-200 flex items-center justify-center rounded">
-                <span className="opacity-20"> Img Placeholder</span>
-            </div>
-            <div className="flex justify-between text-sm">
-                <span>By John Doe</span>
-                <span>2021-09-01</span>
-            </div>
-        </div>
-    );
-};
-
-const CompactCard = () => {
-    return (
-        <div className="border rounded-md p-3 flex justify-between">
-            <div>
-                <h2 className="text-xl font-bold">Name</h2>
-                <p className="text-base">lorem lipsum </p>
-            </div>
-            <div className="flex flex-col text-sm">
-                <span>By John Doe</span>
-                <span>2021-09-01</span>
-            </div>
-        </div>
-    );
+      <main className="">
+        {isCompact ? <CompactCardContainer /> : <NormalCardContainer />}
+      </main>
+    </section>
+  );
 };
 
 export default Carbons;
