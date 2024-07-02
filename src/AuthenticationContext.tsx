@@ -1,25 +1,25 @@
-import React, { useState, ReactNode, SetStateAction } from 'react';
-
+import React, { useState, ReactNode } from "react";
 
 interface AuthenticationContextInterface {
-    token: string, 
-    setToken: (token: string) => void;
+  token: string;
+  setToken: (token: string) => void;
 }
 
-const initialState: AuthenticationContextInterface ={
- token: "",
- setToken: () => {}
-}
+const initialState: AuthenticationContextInterface = {
+  token: "",
+  setToken: () => {},
+};
 
-export const AuthenticationContext = React.createContext<AuthenticationContextInterface>(initialState);
+export const AuthenticationContext =
+  React.createContext<AuthenticationContextInterface>(initialState);
 
-const AuthenticationProvider = ({ children }: {children: ReactNode}) => {
-    const [token, setToken] = useState("");
+const AuthenticationProvider = ({ children }: { children: ReactNode }) => {
+  const [token, setToken] = useState("");
   return (
     <AuthenticationContext.Provider
       value={{
         token,
-        setToken
+        setToken,
       }}
     >
       {children}
@@ -27,4 +27,4 @@ const AuthenticationProvider = ({ children }: {children: ReactNode}) => {
   );
 };
 
-export default AuthenticationProvider
+export default AuthenticationProvider;
